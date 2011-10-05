@@ -10,17 +10,13 @@ class OpenIncludeInput(sublime_plugin.TextCommand):
 			if not groups:
 				sublime.status_message("Use this on a line starting with an \\include or \\input")
 			else:
-				sublime.status_message("inside else")
-				self.openFile(groups()[0])
+				self.openFile(groups.groups()[0])
 
 	def openFile(self, filename):
-	
-			filepath = os.path.dirname(self.view.file_name().strip()) + '/' + filename + ".tex"
+		filepath = os.path.dirname(self.view.file_name().strip()) + '/' + filename + ".tex"
 
-			if os.path.exists(filepath):
-				self.view.window().open_file(filepath)
-				sublime.status_message("Opening file " + filepath)
-			else :
-				sublime.status_message("Could not find " + filepath)
-
-		view.sel().clear()
+		if os.path.exists(filepath):
+			self.view.window().open_file(filepath)
+			sublime.status_message("Opening file " + filepath)
+		else :
+			sublime.status_message("Could not find " + filepath)
