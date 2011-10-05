@@ -2,7 +2,7 @@ import sublime, sublime_plugin
 import os.path
 import re
 
-class OpenIncludeInput(sublime_plugin.TextCommand):
+class OpenIncludeInputCommand(sublime_plugin.TextCommand):
 	def run(self, view):
 		for region in self.view.sel():
 			line = str(self.view.substr(self.view.line(region)))
